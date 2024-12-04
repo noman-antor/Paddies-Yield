@@ -15,7 +15,7 @@ class weather_forecast
   double lat=0;
   double lon=0;
   final translator=GoogleTranslator();
-  String key="f4580d26320009f256e9da74089fd513";
+  String key="Your API Key";
   String unit="metric";
   int year=0;
   int month=0;
@@ -25,7 +25,7 @@ class weather_forecast
   double wind_speed=0;
   double dbl_humidity=0;
 
-  WeatherFactory wf = new WeatherFactory("f4580d26320009f256e9da74089fd513");
+  WeatherFactory wf = new WeatherFactory("Your API Key");
 
   String convert_to_bn(String x) {
     String bengali = "";
