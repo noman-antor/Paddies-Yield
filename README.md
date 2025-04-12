@@ -1,1 +1,1 @@
-[Presentation of the application](https://drive.google.com/drive/folders/1qID0FbK9beY4Y8Uz5S4E4k40QrxXakZX?usp=drive_link)
+- Please click [here](https://drive.google.com/drive/folders/1qID0FbK9beY4Y8Uz5S4E4k40QrxXakZX?usp=drive_link) to access the application's visual content
