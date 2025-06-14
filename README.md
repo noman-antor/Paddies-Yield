@@ -75,7 +75,8 @@ Models were evaluated for multiple sub-tasks:
 **Model Used:** `RandomForestRegressor`  
 - Predicts the portion of Nitrogen (N), Phosphorus (P), and Potassium (K) in the soil based on input soil characteristics.
 - Train-test split: `80/20`
-- ![Soil Ingredient Prediction](assets/soil_ingredient_test.png)
+
+ ![Soil Ingredient Prediction](assets/soil_ingredient_test.png)
 
 ---
 
