@@ -6,22 +6,22 @@
 
 ## 📌 Table of Contents
 
-- [Project Overview](#project-overview)
-- [Features](#features)
-- [Tech Stack](#tech-stack)
-- [Data Pipeline](#data-pipeline)
-  - [Data Preprocessing](#data-preprocessing)
-  - [Feature Engineering](#feature-engineering)
-- [Modeling](#modeling)
-  - [Model Selection](#model-selection)
-  - [Training & Evaluation](#training--evaluation)
-- [API Overview](#api-overview)
-  - [Input Format](#input-format)
-  - [Output Format](#output-format)
-- [Performance](#performance)
-- [How to Run](#how-to-run)
-- [Project Structure](#project-structure)
-- [License](#license)
+- [📖 Project Overview](#-project-overview)
+- [🚀 Features](#-features)
+- [🛠 Tech Stack](#-tech-stack)
+- [📊 Data Pipeline](#-data-pipeline)
+  - [🧹 Data Preprocessing](#-data-preprocessing)
+- [📌 Model Selection](#-model-selection)
+  - [🧪 Soil Ingredient Test](#-soil-ingredient-test)
+  - [🗺️ Region Based Maximum Production](#region-based-maximum-production)
+  - [🌿 Fertilizer/Pesticide Recommendation](#-fertilizerpesticide-recommendation)
+- [🔗 API Overview](#-api-overview)
+  - [Soil Ingredients Test](#soil-ingredients-test)
+  - [Region Based Maximum Production](#region-based-maximum-production)
+  - [Fertilizer/Pesticide Recommendation](#-fertilizerpesticide-recommendation)
+- [📁 Project Structure](#project-structure)
+- [🎥 Demo Video ](#-demo-video)
+
 
 ---
 
@@ -49,7 +49,7 @@ This project leverages real agricultural and environmental datasets and integrat
 ## 🛠 Tech Stack
 
 - **Language:** Python 3.11.7, Dart
-- **Libraries:** scikit-learn, pandas, numpy 
+- **Libraries:** Scikit-learn, Pandas, Numpy 
 - **API Framework:** FastAPI
 - **Frontend Framework:** Flutter  
 - **Server:** Uvicorn  
@@ -76,7 +76,7 @@ Models were evaluated for multiple sub-tasks:
 - Predicts the portion of Nitrogen (N), Phosphorus (P), and Potassium (K) in the soil based on input soil characteristics.
 - Train-test split: `80/20`
 
- ![Soil Ingredient Prediction](assets/soil_ingredient_test.png)
+  ![Soil Ingredient Prediction](assets/soil_ingredient_test.png)
 
 ---
 
@@ -84,7 +84,8 @@ Models were evaluated for multiple sub-tasks:
 **Model Used:** `RandomForestRegressor`  
 - Estimates the maximum potential paddy production for a district in Bangladesh given land area and season.
 - Train-test split: `80/20`
-- ![Region Yield Prediction](assets/region_maximum_production.png)
+
+  ![Region Yield Prediction](assets/region_maximum_production.png)
 
 ---
 
@@ -92,28 +93,102 @@ Models were evaluated for multiple sub-tasks:
 **Model Used:** `RandomForestRegressor` 
 - Recommends the quantity of fertilizer and pesticide required to reach the predicted maximum yield.
 - Train-test split: `80/20`
-- ![Fertilizer Recommendation](assets/fertilizer&pesticides.png)
+
+  ![Fertilizer Recommendation](assets/fertilizer&pesticides.png)
 
 ---
 
 ## 🔗 API Overview
 
-### 📥 Input Format
-
-```json
+### Soil Ingredients Test
+- endpoint: `POST localhost:8050/soil_test`
+- Input Format
+```js
 {
-  "district": "Rajshahi",
-  "season": "Aman",
-  "land_amount_hectare": 2.5,
-  "soil_features": {
-    "ph": 6.5,
-    "ec": 1.2,
-    "organic_carbon": 1.5
-  }
+  "temp": 25.89,
+  "humidity": 52,
+  "ph": 5.6
+  "label": 3       // Chickpea
 }
 ```
 
+- Output Format
+```python
+[
+    18.54,  # Nitrogen
+    70.66,  # Phosphorus
+    19.1    # Potassium
+]
+```
+
+### Region Based Maximum Production
+- endpoint: `POST localhost:8050/product_predict`
+- Input Format
+```js
+{
+  "season": 2,           // Summer   
+  "dist": 10,            // Mymensingh
+  "area": 4586235.256    // Land in hector
+}
+```
+
+- Output Format
+```python
+[
+    8084739.33,          # Amount of production (Ton)
+    1.9009888293129995   # Production per hector (Ton/hector)
+]
+```
+
+### Fertilizer/Pesticide Recommendation 
+- endpoint: `POST localhost:8050/fertil_predict`
+- Input Format
+```js
+{
+  "season": 2,                 // Summer   
+  "dist": 10,                  // Mymensingh
+  "area": 4586235.256,         // Land in hector
+  "prod": 8084739.33,          // Amount of production (Ton)
+  "yld": 1.9009888293129995    // Production per hector (Ton/hector)
+}
+```
+
+- Output Format
+```python
+[
+    624744176.0157341,    #Fertilizer
+    1408520.8137632033    #Pesticide
+]
+```
 ---
 
-🎥 [Click here to watch demo](https://drive.google.com/file/d/1Or7wS_EG-0u5zYQWcEdlrTYJ365a3uq4/view?usp=sharing)
+## Project Structure
+```plaintest
+Paddies_Yield/
+│
+├── api/
+│   ├── main.py
+│   ├── requirements.txt
+├── dataset/
+│   ├── soil_ingredients.csv
+│   ├── maximum_production.csv
+│   ├── fertilizers_pesticides.csv
+├── model_files/
+│   ├── data_preprocessing.ipynb
+│   ├── model_build_on_maximum_production.ipynb
+│   ├── model_build_on_fertilizers_pesticides.ipynb
+│   ├── model_build_on_soil_ingredients.ipynb             
+├── paddies_yield_app/
+├── pkl/
+│   ├── RF_fertilization.pkl
+│   ├── scalerRF_fertil.pkl
+│   ├── RF_prodution.pkl
+│   ├── scalerRF_prod.pkl
+│   ├── RF_soil_test.pkl
+│   ├── scalerRF_soil_test.pkl               
+```
+
+
+## 🎥 Demo Video 
+[Click here to watch demo](https://drive.google.com/file/d/1Or7wS_EG-0u5zYQWcEdlrTYJ365a3uq4/view?usp=sharing)
 
