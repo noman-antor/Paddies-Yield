@@ -84,7 +84,7 @@ Models were evaluated for multiple sub-tasks:
 **Model Used:** `RandomForestRegressor`  
 - Estimates the maximum potential paddy production for a district in Bangladesh given land area and season.
 - Train-test split: `80/20`
-- ![Region Yield Prediction](assets/region_max_production.png)
+- ![Region Yield Prediction](assets/maximum_production.png)
 
 ---
 
@@ -92,7 +92,7 @@ Models were evaluated for multiple sub-tasks:
 **Model Used:** `RandomForestRegressor` 
 - Recommends the quantity of fertilizer and pesticide required to reach the predicted maximum yield.
 - Train-test split: `80/20`
-- ![Fertilizer Recommendation](assets/fertilizer_recommendation.png)
+- ![Fertilizer Recommendation](assets/fertilizer_pesticides.png)
 
 ---
 
@@ -111,3 +111,9 @@ Models were evaluated for multiple sub-tasks:
     "organic_carbon": 1.5
   }
 }
+```
+
+---
+
+🎥 [Click here to watch demo](https://drive.google.com/file/d/1Or7wS_EG-0u5zYQWcEdlrTYJ365a3uq4/view?usp=sharing)
+
